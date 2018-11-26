@@ -30,21 +30,11 @@ class RoutingMiddlewareTest extends TestCase
             ->setMethods(['match'])
             ->getMock();
 
-        $requestArgumentsMock = $this->getMockBuilder(RequestArguments::class)
-            ->setMethods(['getAction', 'getArguments'])
-            ->getMock();
-
-        $requestArgumentsMock->expects($this->once())
-            ->method('getAction')
-            ->willReturn($action);
-
-        $requestArgumentsMock->expects($this->once())
-            ->method('getArguments')
-            ->willReturn($args);
+        $requestArguments = new RequestArguments($action, $args);
 
         $mock->expects($this->once())
             ->method('match')
-            ->willReturn($requestArgumentsMock);
+            ->willReturn($requestArguments);
 
         return $mock;
     }

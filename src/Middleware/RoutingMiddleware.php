@@ -12,6 +12,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class RoutingMiddleware implements MiddlewareInterface
 {
+    /**
+     * @var Router
+     */
     private $router;
 
     public function __construct(Router $router)
@@ -21,10 +24,7 @@ class RoutingMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $args = $this->router->match(
-            $request->getMethod(),
-            $request->getUri()->getPath()
-        );
+        $args = $this->router->match($request);
 
         $request = $request->withAttribute('_action', $args->getAction());
 
