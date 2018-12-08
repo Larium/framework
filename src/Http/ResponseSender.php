@@ -31,7 +31,15 @@ class ResponseSender
 
             foreach ($this->response->getHeaders() as $header => $values) {
                 foreach ($values as $value) {
-                    header($header.': '.$value, false, $this->response->getStatusCode());
+                    header(
+                        sprintf(
+                            '%s: %s',
+                            $header,
+                            $value
+                        ),
+                        false,
+                        $this->response->getStatusCode()
+                    );
                 }
             }
         }
