@@ -1,7 +1,7 @@
 {
     "name": "larium/framework",
     "description": "A PSR-15 framework.",
-    "keywords": [""],
+    "keywords": ["larium", "framework"],
     "type": "library",
     "license": "MIT",
     "authors": [
