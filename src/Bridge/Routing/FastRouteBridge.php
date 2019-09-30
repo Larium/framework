@@ -31,11 +31,17 @@ class FastRouteBridge implements Router
         );
         switch ($routeInfo[0]) {
             case Dispatcher::NOT_FOUND:
-                throw new HttpNotFoundException();
+                throw new HttpNotFoundException(
+                    "Requested path not found",
+                    404
+                );
                 break;
             case Dispatcher::METHOD_NOT_ALLOWED:
                 $allowedMethods = $routeInfo[1];
-                throw new HttpMethodNotAllowedException();
+                throw new HttpMethodNotAllowedException(
+                    sprintf("Only `%s` methods are allowed", implode(', ', $allowedMethods)),
+                    405
+                );
                 break;
             case Dispatcher::FOUND:
                 return new RequestArguments($routeInfo[1], $routeInfo[2]);
