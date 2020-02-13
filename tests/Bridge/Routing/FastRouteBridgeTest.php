@@ -8,7 +8,7 @@ use FastRoute\RouteCollector;
 use Larium\Contract\Routing\HttpMethodNotAllowedException;
 use Larium\Contract\Routing\HttpNotFoundException;
 use PHPUnit\Framework\TestCase;
-use Zend\Diactoros\ServerRequestFactory;
+use Laminas\Diactoros\ServerRequestFactory;
 use function FastRoute\simpleDispatcher;
 
 class FastRouteBridgeTest extends TestCase
