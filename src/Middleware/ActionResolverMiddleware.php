@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Larium\Middleware;
+namespace Larium\Framework\Middleware;
 
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;

@@ -2,18 +2,15 @@
 
 declare(strict_types = 1);
 
-namespace Larium;
+namespace Larium\Framework;
 
-use Larium\Http\ResponseSender;
-use Larium\RequestHandler\ContainerMiddlewareResolver;
-use Larium\RequestHandler\RequestHandler;
-use Psr\Container\NotFoundExceptionInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use SplPriorityQueue;
 use Psr\Container\ContainerInterface;
-use Larium\Http\ServerRequestFactory;
 use Psr\Http\Server\MiddlewareInterface;
-use Psr\Http\Message\ServerRequestFactoryInterface;
+use Larium\Framework\Http\ResponseSender;
+use Psr\Http\Message\ServerRequestInterface;
+use Larium\Framework\RequestHandler\RequestHandler;
+use Larium\Framework\RequestHandler\ContainerMiddlewareResolver;
 
 final class Framework
 {

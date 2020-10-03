@@ -2,14 +2,14 @@
 
 declare(strict_types = 1);
 
-namespace Larium\Bridge\Routing;
+namespace Larium\Framework\Bridge\Routing;
 
 use FastRoute\Dispatcher;
-use Larium\Contract\Routing\Router;
+use Larium\Framework\Contract\Routing\Router;
 use Psr\Http\Message\ServerRequestInterface;
-use Larium\Contract\Routing\RequestArguments;
-use Larium\Contract\Routing\HttpNotFoundException;
-use Larium\Contract\Routing\HttpMethodNotAllowedException;
+use Larium\Framework\Contract\Routing\RequestArguments;
+use Larium\Framework\Contract\Routing\HttpNotFoundException;
+use Larium\Framework\Contract\Routing\HttpMethodNotAllowedException;
 
 class FastRouteBridge implements Router
 {

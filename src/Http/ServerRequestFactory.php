@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Larium\Http;
+namespace Larium\Framework\Http;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ServerRequestFactoryInterface;
@@ -11,8 +11,8 @@ class ServerRequestFactory implements ServerRequestFactoryInterface
 {
     public function createServerRequest(string $method, $uri, array $serverParams = []): ServerRequestInterface
     {
-        if (class_exists('\Zend\Diactoros\ServerRequestFactory')) {
-            return (new \Zend\Diactoros\ServerRequestFactory())
+        if (class_exists('\Laminas\Diactoros\ServerRequestFactory')) {
+            return (new \Laminas\Diactoros\ServerRequestFactory())
                 ->createServerRequest($method, $uri, $serverParams);
         }
 

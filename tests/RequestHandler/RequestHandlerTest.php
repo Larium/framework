@@ -2,12 +2,13 @@
 
 declare(strict_types = 1);
 
-namespace Larium\RequestHandler;
+namespace Larium\Framework\RequestHandler;
 
-use Larium\Http\ServerRequestFactory;
 use SplPriorityQueue;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
+use Larium\Framework\Http\ServerRequestFactory;
+use Larium\Framework\RequestHandler\EmptyQueueException;
 
 class RequestHandlerTest extends TestCase
 {
@@ -40,11 +41,9 @@ class RequestHandlerTest extends TestCase
         $this->assertEquals(1, $stub->int);
     }
 
-    /**
-     * @expectedException Larium\RequestHandler\EmptyQueueException
-     */
     public function testShouldThrowExceptionForEmptyQueue()
     {
+        $this->expectException(EmptyQueueException::class);
         $request = (new ServerRequestFactory())->createServerRequest("GET", "https://example.com");
         $queue = new SplPriorityQueue();
         $handler = new RequestHandler($queue);
