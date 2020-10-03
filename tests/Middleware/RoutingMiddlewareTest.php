@@ -2,14 +2,14 @@
 
 declare(strict_types = 1);
 
-namespace Larium\Middleware;
+namespace Larium\Framework\Middleware;
 
-use Larium\Action\DefaultAction;
-use Larium\Contract\Routing\RequestArguments;
-use Larium\Contract\Routing\Router;
-use Larium\Http\ResponseFactory;
-use Larium\Http\ServerRequestFactory;
-use Larium\RequestHandler\RequestHandler;
+use Larium\Framework\Action\DefaultAction;
+use Larium\Framework\Contract\Routing\RequestArguments;
+use Larium\Framework\Contract\Routing\Router;
+use Larium\Framework\Http\ResponseFactory;
+use Larium\Framework\Http\ServerRequestFactory;
+use Larium\Framework\RequestHandler\RequestHandler;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;

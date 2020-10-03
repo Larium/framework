@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Larium\Http;
+namespace Larium\Framework\Http;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ServerRequestFactoryInterface;

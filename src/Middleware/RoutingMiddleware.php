@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace Larium\Middleware;
+namespace Larium\Framework\Middleware;
 
-use Larium\Contract\Routing\Router;
+use Larium\Framework\Contract\Routing\Router;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;

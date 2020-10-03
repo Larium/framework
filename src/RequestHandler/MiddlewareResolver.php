@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Larium\RequestHandler;
+namespace Larium\Framework\RequestHandler;
 
 use Psr\Http\Server\MiddlewareInterface;
 

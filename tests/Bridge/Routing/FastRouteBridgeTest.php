@@ -2,11 +2,11 @@
 
 declare(strict_types = 1);
 
-namespace Larium\Bridge\Routing;
+namespace Larium\Framework\Bridge\Routing;
 
 use FastRoute\RouteCollector;
-use Larium\Contract\Routing\HttpMethodNotAllowedException;
-use Larium\Contract\Routing\HttpNotFoundException;
+use Larium\Framework\Contract\Routing\HttpMethodNotAllowedException;
+use Larium\Framework\Contract\Routing\HttpNotFoundException;
 use PHPUnit\Framework\TestCase;
 use Laminas\Diactoros\ServerRequestFactory;
 use function FastRoute\simpleDispatcher;

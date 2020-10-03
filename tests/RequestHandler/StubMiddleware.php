@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace Larium\RequestHandler;
+namespace Larium\Framework\RequestHandler;
 
-use Larium\Http\ResponseFactory;
+use Larium\Framework\Http\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;

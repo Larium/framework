@@ -19,19 +19,19 @@
         "psr/http-factory": "^1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~8.3.5",
-        "laminas/laminas-diactoros": "^2.0",
+        "phpunit/phpunit": "^9.0",
+        "laminas/laminas-diactoros": "^2.1",
         "nikic/fast-route": "~1.3.0"
     },
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Larium\\": "src/"
+            "Larium\\Framework\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Larium\\": "tests/"
+            "Larium\\Framework\\": "tests/"
         }
     }
 }
