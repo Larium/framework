@@ -1,14 +1,16 @@
-### Example
+# PSR-15 framework
 
+## Example
 ```php
 <?php
+# public/index.php
 
 declare(strict_types = 1);
 
-use Larium\Framework;
-use Larium\Middleware\RoutingMiddleware;
+use Larium\Framework\Framework;
+use Larium\Framework\Middleware\RoutingMiddleware;
 use Laminas\Diactoros\ServerRequestFactory;
-use Larium\Middleware\ActionResolverMiddleware;
+use Larium\Framework\Middleware\ActionResolverMiddleware;
 use Larium\Framework\Provider\ContainerProvider;
 
 require_once __DIR__ . '/../vendor/autoload.php';
