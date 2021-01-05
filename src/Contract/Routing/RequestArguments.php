@@ -12,17 +12,23 @@ class RequestArguments
     private $arguments;
 
     /**
-     * @var string
+     * @var string|callable
      */
     private $action;
 
-    public function __construct(string $action, array $arguments)
+    /**
+     * @param string|callable $action
+     */
+    public function __construct($action, array $arguments)
     {
         $this->action = $action;
         $this->arguments = $arguments;
     }
 
-    public function getAction(): string
+    /**
+     * @return string|callable
+     */
+    public function getAction()
     {
         return $this->action;
     }

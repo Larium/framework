@@ -4,12 +4,12 @@ declare(strict_types = 1);
 
 namespace Larium\Framework\Middleware;
 
+use Laminas\Diactoros\ServerRequest;
 use Larium\Framework\Action\DefaultAction;
 use Larium\Framework\Contract\Routing\RequestArguments;
 use Larium\Framework\Contract\Routing\Router;
 use Larium\Framework\Http\ResponseFactory;
 use Larium\Framework\Http\ServerRequestFactory;
-use Larium\Framework\RequestHandler\RequestHandler;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -24,10 +24,23 @@ class RoutingMiddlewareTest extends TestCase
         $m->process($request, $this->createRequestHandler());
     }
 
-    private function getRouter(string $action, array $args): Router
+    public function testShouldHandleCallableAction(): void
+    {
+        $m = new RoutingMiddleware($this->getRouter(function(ServerRequestInterface $request) {
+            return 'OK';
+        }, ['page' => 1]));
+        $request = (new ServerRequestFactory)->createServerRequest('GET', 'https://example.com/page/1');
+        $m->process($request, $this->createRequestHandlerCallable());
+    }
+
+    /**
+     * @param string|callable $action
+     * @return MockObject|Router
+     */
+    private function getRouter($action, array $args)
     {
         $mock = $this->getMockBuilder(Router::class)
-            ->setMethods(['match'])
+            ->onlyMethods(['match'])
             ->getMock();
 
         $requestArguments = new RequestArguments($action, $args);
@@ -39,16 +52,39 @@ class RoutingMiddlewareTest extends TestCase
         return $mock;
     }
 
-    private function createRequestHandler(): RequestHandlerInterface
+    /**
+     * @return MockObject|RequestHandlerInterface
+     */
+    private function createRequestHandler()
     {
         $mock = $this->getMockBuilder(RequestHandlerInterface::class)
-            ->setMethods(['handle'])
+            ->onlyMethods(['handle'])
             ->getMock();
 
         $mock->expects($this->once())
             ->method('handle')
             ->with($this->callback(function (ServerRequestInterface $r) {
                 return $r->getAttribute('_action') === DefaultAction::class
+                    && $r->getAttribute('page') === 1;
+            }))
+            ->willReturn((new ResponseFactory())->createResponse());
+
+        return $mock;
+    }
+
+    /**
+     * @return MockObject|RequestHandlerInterface
+     */
+    private function createRequestHandlerCallable()
+    {
+        $mock = $this->getMockBuilder(RequestHandlerInterface::class)
+            ->onlyMethods(['handle'])
+            ->getMock();
+
+        $mock->expects($this->once())
+            ->method('handle')
+            ->with($this->callback(function (ServerRequestInterface $r) {
+                return is_callable($r->getAttribute('_action'))
                     && $r->getAttribute('page') === 1;
             }))
             ->willReturn((new ResponseFactory())->createResponse());
