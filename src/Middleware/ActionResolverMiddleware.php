@@ -21,7 +21,10 @@ class ActionResolverMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $action = $this->container->get($request->getAttribute('_action'));
+        $action = $request->getAttribute('_action');
+        if (is_string($action)) {
+            $action = $this->container->get($action);
+        }
 
         return call_user_func_array($action, [$request]);
     }
