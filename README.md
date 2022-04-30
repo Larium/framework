@@ -16,16 +16,13 @@ use Larium\Framework\Provider\ContainerProvider;
 require_once __DIR__ . '/../vendor/autoload.php';
 
 (function () {
-    /** @var ContainerProvider */
-    $containerProvider
-    $container = $containerProvider->getContainer().
+    $container = $containerProvider->getContainer();
+    $framework = new Framework($container);
 
-    $f = new Framework($container);
+    $framework->pipe(RoutingMiddleware::class, 1);
+    $framework->pipe(ActionResolverMiddleware::class, 0);
 
-    $f->pipe(RoutingMiddleware::class, 1);
-    $f->pipe(ActionResolverMiddleware::class, 0);
-
-    $f->run(ServerRequestFactory::fromGlobals());
+    $framework->run(ServerRequestFactory::fromGlobals());
 })();
 
 ```
