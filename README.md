@@ -18,7 +18,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 (function () {
     /** @var ContainerProvider */
     $containerProvider
-    $container = $containerProvider->getContainer().
+    $container = $containerProvider->getContainer();
 
     $f = new Framework($container);
 
@@ -27,5 +27,4 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
     $f->run(ServerRequestFactory::fromGlobals());
 })();
-
 ```
