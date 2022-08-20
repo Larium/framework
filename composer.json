@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
+        "php": "^7.3 || ^8.0",
         "psr/http-message": "~1.0",
         "psr/http-server-handler": "~1.0",
         "psr/http-server-middleware": "~1.0",
@@ -20,7 +20,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
-        "laminas/laminas-diactoros": "^2.1",
+        "laminas/laminas-diactoros": "^2.14",
         "nikic/fast-route": "~1.3.0"
     },
     "minimum-stability": "stable",
@@ -33,5 +33,11 @@
         "psr-4": {
             "Larium\\Framework\\": "tests/"
         }
+    },
+    "scripts": {
+        "build7": "docker build -f .docker/php7.4-cli/Dockerfile -t framework-7.4 .",
+        "tests7": "docker run -v $(pwd):/opt/php framework-7.4 sh -c './vendor/bin/phpunit tests/'",
+        "build8": "docker build -f .docker/php8.0-cli/Dockerfile -t framework-8.0 .",
+        "tests8": "docker run -v $(pwd):/opt/php framework-8.0 sh -c './vendor/bin/phpunit tests/'"
     }
 }
