@@ -1,4 +1,8 @@
+<<<<<<<< Updated upstream:.docker/php8.3-cli/Dockerfile
 FROM php:8.3-cli
+========
+FROM php:8.2-cli
+>>>>>>>> Stashed changes:.docker/php8.2-cli/Dockerfile
 WORKDIR "/opt/php"
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -11,7 +15,11 @@ RUN apt-get update && \
     docker-php-source delete && \
     rm -r /tmp/* /var/cache/*
 
+<<<<<<<< Updated upstream:.docker/php8.3-cli/Dockerfile
 COPY ./.docker/php8.3-cli/php-ini-overrides.ini /usr/local/etc/php/conf.d/99-overrides.ini
+========
+COPY ./.docker/php8.2-cli/php-ini-overrides.ini /usr/local/etc/php/conf.d/99-overrides.ini
+>>>>>>>> Stashed changes:.docker/php8.2-cli/Dockerfile
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
      && php composer-setup.php \

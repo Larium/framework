@@ -22,7 +22,7 @@ class RequestHandler implements RequestHandlerInterface
      */
     private $resolver;
 
-    public function __construct(SplPriorityQueue $entries, MiddlewareResolver $resolver = null)
+    public function __construct(SplPriorityQueue $entries, ?MiddlewareResolver $resolver = null)
     {
         $this->queue = $entries;
 
