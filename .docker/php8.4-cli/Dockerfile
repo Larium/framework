@@ -1,7 +1,7 @@
 FROM php:8.4-cli
 WORKDIR "/opt/php"
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get install -y zip libzip-dev && \
@@ -11,7 +11,7 @@ RUN apt-get update && \
     docker-php-source delete && \
     rm -r /tmp/* /var/cache/*
 
-COPY ./.docker/php8.0-cli/php-ini-overrides.ini /usr/local/etc/php/conf.d/99-overrides.ini
+COPY ./.docker/php8.4-cli/php-ini-overrides.ini /usr/local/etc/php/conf.d/99-overrides.ini
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
      && php composer-setup.php \
