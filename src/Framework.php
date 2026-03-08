@@ -11,6 +11,7 @@ use Larium\Framework\Http\ResponseSender;
 use Psr\Http\Message\ServerRequestInterface;
 use Larium\Framework\RequestHandler\RequestHandler;
 use Larium\Framework\RequestHandler\ContainerMiddlewareResolver;
+use Psr\Http\Message\ResponseInterface;
 
 final class Framework
 {
@@ -41,13 +42,18 @@ final class Framework
 
     public function run(ServerRequestInterface $request): void
     {
+        $response = $this->getResponse($request);
+
+        echo ResponseSender::new($response)->send();
+    }
+
+    public function getResponse(ServerRequestInterface $request): ResponseInterface
+    {
         $requestHandler = new RequestHandler(
             $this->entries,
             new ContainerMiddlewareResolver($this->container)
         );
 
-        $response = $requestHandler->handle($request);
-
-        echo ResponseSender::new($response)->send();
+        return $requestHandler->handle($request);
     }
 }
